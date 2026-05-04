@@ -1,0 +1,60 @@
+---
+import { Picture } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'apps'>;
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const hasSecondary = Boolean(d.secondary_image);
+
+// Single-image cards (mascots / illustrations) get a centered, padded layout
+// so the artwork breathes instead of being cropped to fill 4:3.
+const mediaCls = ['gcard-media', !hasSecondary ? 'gcard-media--portrait' : '']
+  .filter(Boolean)
+  .join(' ');
+---
+<article class="gcard" data-slug={d.slug} data-status={d.status}>
+  <div class={mediaCls} data-has-secondary={hasSecondary ? 'true' : 'false'}>
+    <Picture
+      src={d.hero_image}
+      formats={['avif', 'webp']}
+      widths={[480, 720, 1080]}
+      sizes="(max-width: 880px) 100vw, 540px"
+      alt={`${d.name} preview`}
+      class="gcard-img gcard-img-primary"
+      loading="lazy"
+      decoding="async"
+    />
+    {hasSecondary && d.secondary_image && (
+      <Picture
+        src={d.secondary_image}
+        formats={['avif', 'webp']}
+        widths={[480, 720, 1080]}
+        sizes="(max-width: 880px) 100vw, 540px"
+        alt=""
+        class="gcard-img gcard-img-secondary"
+        loading="lazy"
+        decoding="async"
+        aria-hidden="true"
+      />
+    )}
+  </div>
+  <div class="gcard-body">
+    <h3 class="gcard-name">{d.name}</h3>
+    <p class="gcard-tagline">{d.tagline}</p>
+    <ul class="gcard-chips">
+      {d.stack.map((s) => <li class="chip-mono">{s}</li>)}
+    </ul>
+    <p class="gcard-blurb">{d.blurb}</p>
+    <footer class="gcard-foot">
+      <span class="gcard-meta">{d.built_by} · {d.shipped} · <span class={`badge badge-${d.status}`}>{d.status}</span></span>
+      <span class="gcard-links">
+        {d.live_url && <a class="btn btn-primary" href={d.live_url}>Live</a>}
+        <a class="btn" href={d.repo_url}>Repo</a>
+      </span>
+    </footer>
+  </div>
+</article>
