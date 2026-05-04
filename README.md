@@ -9,10 +9,27 @@ How to ship fast at Trivelta. Two routes, one outcome:
 
 ```bash
 npm install
-npm start          # serves public/index.html at http://localhost:3000
+npm run dev            # Astro dev server on http://localhost:4321
+```
+
+To preview the production build (what Railway serves):
+
+```bash
+npm run build          # Astro builds to ./dist
+npm start              # Express serves ./dist on process.env.PORT
 ```
 
 Listens on `process.env.PORT` (Railway sets this automatically).
+
+## Add your app to the gallery
+
+The third section on the page is a community gallery of apps that were vibe-coded at Trivelta.
+
+1. Drop your screenshot(s) in `src/assets/gallery/<slug>/`. PNG or JPG; any size — Astro generates AVIF/WebP at the right resolutions.
+2. Copy `src/content/apps/rocco.md` to `src/content/apps/<slug>.md` and edit the frontmatter. Schema is enforced at build time, so a bad PR can't merge silently.
+3. Open a PR. Card lands in the grid on merge.
+
+Optional `secondary_image` reveals on hover (cross-fade). For mascots / illustrations, omit it — the card will center the artwork on the dark background.
 
 ## CLI bootstrap
 
@@ -45,6 +62,10 @@ This repo is itself deployed via the same flow it documents:
 2. Railway service deploys from `main` on push.
 3. Public domain via `railway domain`.
 
+## Tech
+
+Astro 5 (static output) → `dist/` → served by `server.js` (Express, listens on `process.env.PORT`). Content collections drive the gallery (`src/content/apps/*.md`). Tokens / base / component CSS in `src/styles/`. Playwright e2e in `tests/e2e/`.
+
 ## Contributing
 
-PRs welcome. The guide page (`public/index.html`) is intentionally a single self-contained HTML file — no build step, no framework. Keep it that way unless there's a strong reason.
+PRs welcome. Keep new dependencies minimal — the design tokens and component CSS in `src/styles/` are the source of truth for the look.
