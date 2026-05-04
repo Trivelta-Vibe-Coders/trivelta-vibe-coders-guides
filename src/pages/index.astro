@@ -1,0 +1,30 @@
+---
+import Site from '../layouts/Site.astro';
+import Hero from '../components/Hero.astro';
+import Routes from '../components/Routes.astro';
+import Gallery from '../components/Gallery.astro';
+import Trouble from '../components/Trouble.astro';
+import CTA from '../components/CTA.astro';
+import Footer from '../components/Footer.astro';
+---
+<Site
+  title="Vibe Coding at Trivelta"
+  description="Ship internal apps in under 10 minutes. The Trivelta Vibe Coders guide to going from idea to live URL."
+>
+  <div class="wrap">
+    <div class="nav">
+      <span class="brand"><span class="brand-dot"></span>Trivelta Vibe Coders</span>
+      <span>Internal · v1</span>
+    </div>
+
+    <main>
+      <Hero />
+      <Routes />
+      <Gallery />
+      <Trouble />
+      <CTA />
+    </main>
+
+    <Footer />
+  </div>
+</Site>

@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import GalleryCard from './GalleryCard.astro';
+import EmptyCard from './EmptyCard.astro';
+import Contribute from './Contribute.astro';
+
+const apps = (await getCollection('apps')).sort((a, b) => {
+  const ao = a.data.order ?? 99;
+  const bo = b.data.order ?? 99;
+  if (ao !== bo) return ao - bo;
+  return a.data.name.localeCompare(b.data.name);
+});
+---
+<section data-section="gallery">
+  <h2>AI-coded apps</h2>
+  <p class="gallery-lede">Built with the same flow this page describes.</p>
+  <div class="gallery-grid">
+    {apps.map((entry) => <GalleryCard entry={entry} />)}
+    <EmptyCard />
+  </div>
+  <Contribute />
+</section>
