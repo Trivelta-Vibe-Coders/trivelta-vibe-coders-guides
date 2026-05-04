@@ -1,0 +1,80 @@
+---
+import Step from './Step.astro';
+---
+<section data-section="routes">
+  <h2>Two routes, same destination</h2>
+  <div class="routes">
+
+    <div class="route">
+      <div class="route-tag">Route A</div>
+      <h3>Click through the dashboards</h3>
+      <p class="route-sub">For when you'd rather see the buttons. Five steps, all browser, no terminal required.</p>
+
+      <Step chip="1" title="Get access" first>
+        <p>Ask Connor (or whoever pointed you here) for a <a href="https://github.com/Trivelta-Vibe-Coders">Trivelta Vibe Coders</a> GitHub org invite. Then join the Railway workspace with this <a href="https://railway.com/workspace/invite/Ye4N8c2QZKKzZdgqQufuW">invite link</a>.</p>
+      </Step>
+
+      <Step chip="2" title="Create your project">
+        <p>Open <a href="https://github.com/Trivelta-Vibe-Coders/app-template"><code>app-template</code></a> and click <strong>Use this template</strong> (<a href="https://github.com/Trivelta-Vibe-Coders/app-template/generate">direct link</a>). Name it whatever you want — keep it inside the Trivelta Vibe Coders org so Railway can see it.</p>
+      </Step>
+
+      <Step chip="3" title="Deploy to Railway">
+        <p>Open <a href="https://railway.app/dashboard">railway.app/dashboard</a> and switch to the <strong>Trivelta Vibe Coders</strong> workspace. Click <strong>New Project → Deploy from GitHub Repo</strong> and pick your new repo. The Railway GitHub App is already installed for the org, so every repo here appears automatically. Railway auto-detects your stack and deploys.</p>
+      </Step>
+
+      <Step chip="4" title="Get your public URL">
+        <p>In Railway, open your service's <strong>Settings → Networking</strong>. Click <strong>Generate Domain</strong> for a live <code>up.railway.app</code> URL.</p>
+      </Step>
+
+      <Step chip="5" title="Start vibing">
+        <ul>
+          <li>Push to <code>main</code> — Railway auto-redeploys on every push.</li>
+          <li>Iterate with <a href="https://docs.claude.com/en/docs/claude-code">Claude Code</a>, Cursor, or whatever AI tool you like.</li>
+          <li>Env vars: service <strong>Variables</strong> tab.</li>
+          <li>Need a database? <strong>+ New → Database</strong> (Postgres, Redis, MySQL, Mongo).</li>
+        </ul>
+      </Step>
+    </div>
+
+    <div class="route">
+      <div class="route-tag">Route B</div>
+      <h3>One command, five steps</h3>
+      <p class="route-sub">For when you'd rather type. Same outcome — template, repo, Railway project, domain, env scaffolding — wrapped into a single script. New to the terminal? You only need to copy, paste, and answer a couple of prompts.</p>
+
+      <p class="cmd-label">Prereqs</p>
+      <pre><code><span class="prompt">$ </span>brew install gh railway jq
+<span class="prompt">$ </span>gh auth login                       <span class="prompt"># scopes: repo, read:org, workflow</span>
+<span class="prompt">$ </span>railway login</code></pre>
+      <p class="cmd-note">One-time setup. Skip what you already have.</p>
+
+      <p class="cmd-label">Available now</p>
+      <pre><code><span class="prompt">$ </span>git clone https://github.com/Trivelta-Vibe-Coders/trivelta-vibe-coders-guides
+<span class="prompt">$ </span>bash trivelta-vibe-coders-guides/scripts/vibe-bootstrap.sh my-app</code></pre>
+      <p class="cmd-note">Replace <code>my-app</code> with your project name (lowercase, hyphenated). Add <code>--db postgres</code> for a managed database, <code>--public</code> to make the repo public.</p>
+
+      <p class="cmd-label future">Coming soon — one-liner</p>
+      <pre><code><span class="prompt">$ </span>curl -fsSL https://vibe-coders-guides-production.up.railway.app/install.sh | bash -s my-app</code></pre>
+      <p class="cmd-note">No clone needed. Curls the bootstrap script and runs it in place.</p>
+
+      <p class="cmd-label future">Coming soon — npm</p>
+      <pre><code><span class="prompt">$ </span>npx <span class="kw">@trivelta/vibe</span> init my-app</code></pre>
+      <p class="cmd-note">Once we publish to npm. Same flow, nicer entry point.</p>
+
+      <Step chip="·" title="What the script does" topRule>
+        <ul>
+          <li>Creates a new repo from <code>app-template</code> in the Trivelta Vibe Coders org (private by default; <code>--public</code> flips it).</li>
+          <li>Clones it locally next to your other projects.</li>
+          <li>Spins up a Railway project in the Trivelta Vibe Coders workspace and links the repo as the service source.</li>
+          <li>Optionally provisions a managed database (<code>--db postgres|redis|mysql|mongo</code>).</li>
+          <li>Generates a public <code>*.up.railway.app</code> domain.</li>
+          <li>Prints repo URL, Railway URL, and live URL — usually in under a minute.</li>
+        </ul>
+      </Step>
+
+      <Step chip="!" title="After bootstrap — confirm push-to-deploy" topRule>
+        <p>Open your service in Railway → <strong>Settings → Source</strong>. The repo should already be connected. If you see <em>No source</em>, click <strong>Connect Repo</strong> and pick your new repo — without this, pushes to <code>main</code> won't trigger a redeploy. One-time check.</p>
+      </Step>
+    </div>
+
+  </div>
+</section>

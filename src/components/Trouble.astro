@@ -1,0 +1,19 @@
+---
+---
+<section class="trouble" data-section="trouble">
+  <h2>When it breaks</h2>
+  <div class="trouble-grid">
+    <div class="trouble-item">
+      <h4>Build failed</h4>
+      <p>Open the failed deployment in Railway and read the build logs. Almost always a missing dependency or a typo in <code>package.json</code>.</p>
+    </div>
+    <div class="trouble-item">
+      <h4>App crashes on boot</h4>
+      <p>Make sure your app listens on <code>process.env.PORT</code>. Railway assigns the port — hardcoding <code>3000</code> won't work in production.</p>
+    </div>
+    <div class="trouble-item">
+      <h4>Repo missing in Railway</h4>
+      <p>It must live in the <strong>Trivelta Vibe Coders</strong> org, not your personal GitHub account. Move it, or recreate from the template inside the org.</p>
+    </div>
+  </div>
+</section>

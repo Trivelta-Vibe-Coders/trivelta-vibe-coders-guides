@@ -1,0 +1,19 @@
+---
+interface Props {
+  chip: string;
+  title: string;
+  first?: boolean;
+  topRule?: boolean;
+}
+const { chip, title, first = false, topRule = false } = Astro.props;
+const cls = ['step', first ? 'step--first' : '', topRule ? 'step--top-rule' : '']
+  .filter(Boolean)
+  .join(' ');
+---
+<div class={cls}>
+  <div class="chip">{chip}</div>
+  <div>
+    <h4>{title}</h4>
+    <slot />
+  </div>
+</div>
