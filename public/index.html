@@ -198,6 +198,7 @@
       border: 1px solid var(--border);
     }
     pre {
+      position: relative;
       font-family: var(--mono);
       font-size: 13.5px;
       background: var(--bg-code);
@@ -207,6 +208,30 @@
       overflow-x: auto;
       margin: 12px 0;
       line-height: 1.55;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--text-dim);
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: 5px;
+      padding: 4px 10px;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+    pre:hover .copy-btn,
+    .copy-btn:focus-visible { opacity: 1; }
+    .copy-btn:hover { color: var(--text); border-color: var(--border-strong); }
+    .copy-btn.copied { color: var(--accent); border-color: var(--accent-border); opacity: 1; }
+    @media (hover: none) {
+      .copy-btn { opacity: 1; }
     }
     pre code { background: transparent; border: none; padding: 0; font-size: inherit; }
     .cmd-label {
@@ -298,6 +323,12 @@
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
+    .visually-hidden {
+      position: absolute; width: 1px; height: 1px; padding: 0;
+      margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0);
+      white-space: nowrap; border: 0;
+    }
   </style>
 </head>
 <body>
@@ -328,7 +359,7 @@
             <div class="chip">1</div>
             <div>
               <h4>Get access</h4>
-              <p>Get invited to the <strong>Trivelta Vibe Coders</strong> GitHub org. Join the <strong>Trivelta Vibe Coders</strong> Railway workspace via invite link.</p>
+              <p>Ask Connor (or whoever pointed you here) for a <a href="https://github.com/Trivelta-Vibe-Coders">Trivelta Vibe Coders</a> GitHub org invite. Then join the Railway workspace with this <a href="https://railway.com/workspace/invite/Ye4N8c2QZKKzZdgqQufuW">invite link</a>.</p>
             </div>
           </div>
 
@@ -336,7 +367,7 @@
             <div class="chip">2</div>
             <div>
               <h4>Create your project</h4>
-              <p>Open the Trivelta Vibe Coders org on GitHub. Click <strong>Use this template</strong> on the <code>app-template</code> repo. Name it whatever you want — it's yours to vibe with.</p>
+              <p>Open <a href="https://github.com/Trivelta-Vibe-Coders/app-template"><code>app-template</code></a> and click <strong>Use this template</strong> (<a href="https://github.com/Trivelta-Vibe-Coders/app-template/generate">direct link</a>). Name it whatever you want — keep it inside the Trivelta Vibe Coders org so Railway can see it.</p>
             </div>
           </div>
 
@@ -344,7 +375,7 @@
             <div class="chip">3</div>
             <div>
               <h4>Deploy to Railway</h4>
-              <p>Open the Railway dashboard at <a href="https://railway.app/dashboard">railway.app/dashboard</a>. Click <strong>New Project → Deploy from GitHub Repo</strong>. Select your new repo (it must live in the Trivelta Vibe Coders org). Railway auto-detects your stack and deploys instantly.</p>
+              <p>Open <a href="https://railway.app/dashboard">railway.app/dashboard</a> and switch to the <strong>Trivelta Vibe Coders</strong> workspace. Click <strong>New Project → Deploy from GitHub Repo</strong> and pick your new repo. The Railway GitHub App is already installed for the org, so every repo here appears automatically. Railway auto-detects your stack and deploys.</p>
             </div>
           </div>
 
@@ -362,9 +393,9 @@
               <h4>Start vibing</h4>
               <ul>
                 <li>Push to <code>main</code> — Railway auto-redeploys on every push.</li>
-                <li>Use Claude Code or any AI tool to iterate fast.</li>
-                <li>Add env vars in Railway: <strong>Service → Variables</strong>.</li>
-                <li>Need a database? Click <strong>+ New → Database</strong> (Postgres, Redis, etc.).</li>
+                <li>Iterate with <a href="https://docs.claude.com/en/docs/claude-code">Claude Code</a>, Cursor, or whatever AI tool you like.</li>
+                <li>Env vars: service <strong>Variables</strong> tab.</li>
+                <li>Need a database? <strong>+ New → Database</strong> (Postgres, Redis, MySQL, Mongo).</li>
               </ul>
             </div>
           </div>
@@ -376,30 +407,45 @@
           <h3>One command, five steps</h3>
           <p class="route-sub">For when you'd rather type. Same outcome — template, repo, Railway project, domain, env scaffolding — wrapped into a single script. New to the terminal? You only need to copy, paste, and answer a couple of prompts.</p>
 
+          <p class="cmd-label">Prereqs</p>
+          <pre><code><span class="prompt">$ </span>brew install gh railway jq
+<span class="prompt">$ </span>gh auth login                       <span class="prompt"># scopes: repo, read:org, workflow</span>
+<span class="prompt">$ </span>railway login</code></pre>
+          <p class="cmd-note">One-time setup. Skip what you already have.</p>
+
           <p class="cmd-label">Available now</p>
           <pre><code><span class="prompt">$ </span>git clone https://github.com/Trivelta-Vibe-Coders/trivelta-vibe-coders-guides
 <span class="prompt">$ </span>bash trivelta-vibe-coders-guides/scripts/vibe-bootstrap.sh my-app</code></pre>
-          <p class="cmd-note">The script walks you through GitHub auth, Railway auth, and picks sensible defaults. Replace <code>my-app</code> with your project name.</p>
+          <p class="cmd-note">Replace <code>my-app</code> with your project name (lowercase, hyphenated). Add <code>--db postgres</code> for a managed database, <code>--public</code> to make the repo public.</p>
 
           <p class="cmd-label future">Coming soon — one-liner</p>
-          <pre><code><span class="prompt">$ </span>curl -fsSL https://vibe-coders-guides.up.railway.app/install.sh | bash -s my-app</code></pre>
-          <p class="cmd-note">No clone, no repo on disk. Curls the bootstrap script and runs it in place.</p>
+          <pre><code><span class="prompt">$ </span>curl -fsSL https://vibe-coders-guides-production.up.railway.app/install.sh | bash -s my-app</code></pre>
+          <p class="cmd-note">No clone needed. Curls the bootstrap script and runs it in place.</p>
 
           <p class="cmd-label future">Coming soon — npm</p>
           <pre><code><span class="prompt">$ </span>npx <span class="kw">@trivelta/vibe</span> init my-app</code></pre>
-          <p class="cmd-note">The eventual UX once we publish to npm. Same flow, nicer entry point.</p>
+          <p class="cmd-note">Once we publish to npm. Same flow, nicer entry point.</p>
 
           <div class="step" style="margin-top: 28px; border-top: 1px solid var(--border); padding-top: 22px;">
             <div class="chip">·</div>
             <div>
               <h4>What the script does</h4>
               <ul>
-                <li>Forks the <code>app-template</code> into the Trivelta Vibe Coders org under your name.</li>
-                <li>Creates a Railway project, links the repo, and triggers the first deploy.</li>
-                <li>Generates a public <code>up.railway.app</code> domain.</li>
-                <li>Drops a starter <code>.env.example</code> and a <code>CLAUDE.md</code> so Claude Code or Cursor know the lay of the land.</li>
-                <li>Prints the live URL when it's done.</li>
+                <li>Creates a new repo from <code>app-template</code> in the Trivelta Vibe Coders org (private by default; <code>--public</code> flips it).</li>
+                <li>Clones it locally next to your other projects.</li>
+                <li>Spins up a Railway project in the Trivelta Vibe Coders workspace and links the repo as the service source.</li>
+                <li>Optionally provisions a managed database (<code>--db postgres|redis|mysql|mongo</code>).</li>
+                <li>Generates a public <code>*.up.railway.app</code> domain.</li>
+                <li>Prints repo URL, Railway URL, and live URL — usually in under a minute.</li>
               </ul>
+            </div>
+          </div>
+
+          <div class="step" style="border-top: 1px solid var(--border); padding-top: 22px;">
+            <div class="chip">!</div>
+            <div>
+              <h4>After bootstrap — confirm push-to-deploy</h4>
+              <p>Open your service in Railway → <strong>Settings → Source</strong>. The repo should already be connected. If you see <em>No source</em>, click <strong>Connect Repo</strong> and pick your new repo — without this, pushes to <code>main</code> won't trigger a redeploy. One-time check.</p>
             </div>
           </div>
         </div>
@@ -436,5 +482,48 @@
     </footer>
 
   </div>
+
+  <script>
+    (function () {
+      var pres = document.querySelectorAll('pre');
+      pres.forEach(function (pre) {
+        var btn = document.createElement('button');
+        btn.className = 'copy-btn';
+        btn.type = 'button';
+        btn.textContent = 'Copy';
+        btn.setAttribute('aria-label', 'Copy code to clipboard');
+        btn.addEventListener('click', function () {
+          var text = pre.querySelector('code') ? pre.querySelector('code').innerText : pre.innerText;
+          // Strip leading "$ " prompt lines so users can paste directly.
+          text = text.replace(/^\s*\$\s/gm, '').trim();
+          var done = function () {
+            btn.textContent = 'Copied';
+            btn.classList.add('copied');
+            setTimeout(function () {
+              btn.textContent = 'Copy';
+              btn.classList.remove('copied');
+            }, 1400);
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(function () {
+              btn.textContent = 'Press ⌘C';
+            });
+          } else {
+            var ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'absolute';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); done(); }
+            catch (e) { btn.textContent = 'Press ⌘C'; }
+            document.body.removeChild(ta);
+          }
+        });
+        pre.appendChild(btn);
+      });
+    })();
+  </script>
 </body>
 </html>
