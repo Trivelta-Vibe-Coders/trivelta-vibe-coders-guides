@@ -5,13 +5,22 @@
   "description": "How to ship fast at Trivelta — UI walkthrough + CLI bootstrap for the Vibe Coders flow.",
   "main": "server.js",
   "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
     "start": "node server.js",
-    "dev": "node server.js"
+    "test:e2e": "playwright test"
   },
   "engines": {
     "node": ">=20"
   },
   "dependencies": {
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "astro": "^5.0.0",
+    "sharp": "^0.33.5",
+    "@playwright/test": "^1.47.0",
+    "typescript": "^5.6.0"
   }
 }
