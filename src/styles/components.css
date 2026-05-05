@@ -276,6 +276,16 @@
 }
 .btn-primary:hover { background: #2563eb; border-color: #2563eb; color: #fff; }
 
+.btn-copy-login {
+  font-family: var(--sans);
+  background: transparent;
+  cursor: pointer;
+}
+.btn-copy-login.copied {
+  color: var(--accent);
+  border-color: var(--accent-border);
+}
+
 .badge {
   display: inline-block;
   font-family: var(--mono);
