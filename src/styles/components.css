@@ -173,11 +173,7 @@
   height: 100%;
   object-fit: cover;
   object-position: top center;
-  transition: opacity 250ms ease;
 }
-.gcard-img-secondary { opacity: 0; }
-.gcard:hover .gcard-media[data-has-secondary="true"] .gcard-img-primary { opacity: 0; }
-.gcard:hover .gcard-media[data-has-secondary="true"] .gcard-img-secondary { opacity: 1; }
 
 .gcard-media--portrait {
   background:

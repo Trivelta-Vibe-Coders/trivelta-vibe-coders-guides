@@ -8,39 +8,25 @@ interface Props {
 
 const { entry } = Astro.props;
 const d = entry.data;
-const hasSecondary = Boolean(d.secondary_image);
 
-// Single-image cards (mascots / illustrations) get a centered, padded layout
-// so the artwork breathes instead of being cropped to fill 4:3.
-const mediaCls = ['gcard-media', !hasSecondary ? 'gcard-media--portrait' : '']
+// Mascots / illustrations opt into a centered, padded layout via `portrait: true`
+// in their frontmatter. Real screenshots use the default 4:3 cover crop.
+const mediaCls = ['gcard-media', d.portrait ? 'gcard-media--portrait' : '']
   .filter(Boolean)
   .join(' ');
 ---
 <article class="gcard" data-slug={d.slug}>
-  <div class={mediaCls} data-has-secondary={hasSecondary ? 'true' : 'false'}>
+  <div class={mediaCls}>
     <Picture
       src={d.hero_image}
       formats={['avif', 'webp']}
       widths={[480, 720, 1080]}
       sizes="(max-width: 880px) 100vw, 540px"
       alt={`${d.name} preview`}
-      class="gcard-img gcard-img-primary"
+      class="gcard-img"
       loading="lazy"
       decoding="async"
     />
-    {hasSecondary && d.secondary_image && (
-      <Picture
-        src={d.secondary_image}
-        formats={['avif', 'webp']}
-        widths={[480, 720, 1080]}
-        sizes="(max-width: 880px) 100vw, 540px"
-        alt=""
-        class="gcard-img gcard-img-secondary"
-        loading="lazy"
-        decoding="async"
-        aria-hidden="true"
-      />
-    )}
   </div>
   <div class="gcard-body">
     <h3 class="gcard-name">{d.name}</h3>

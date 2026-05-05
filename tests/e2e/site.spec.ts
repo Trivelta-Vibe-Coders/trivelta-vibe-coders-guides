@@ -40,22 +40,6 @@ test.describe('vibe-coders-guides one-pager', () => {
     expect(errors, errors.join('\n')).toEqual([]);
   });
 
-  test('hover swaps primary/secondary image on the card with two images', async ({ page }) => {
-    await page.goto('/');
-
-    const card = page.locator('.gcard[data-slug="trivelta-ai-reviews"]');
-    const primary = card.locator('.gcard-img-primary');
-    const secondary = card.locator('.gcard-img-secondary');
-
-    await expect(secondary).toHaveCSS('opacity', '0');
-    await expect(primary).toHaveCSS('opacity', '1');
-
-    await card.hover();
-
-    await expect(secondary).toHaveCSS('opacity', '1');
-    await expect(primary).toHaveCSS('opacity', '0');
-  });
-
   test('mobile (375px): gallery collapses to one column', async ({ browser }) => {
     const ctx = await browser.newContext({ viewport: { width: 375, height: 800 } });
     const page = await ctx.newPage();
@@ -74,7 +58,7 @@ test.describe('vibe-coders-guides one-pager', () => {
     let bytes = 0;
     page.on('response', async (r) => {
       const url = r.url();
-      if (/\/_astro\/(report|tv|rocco|queue)\..*\.(avif|webp|png)$/.test(url)) {
+      if (/\/_astro\/(tv|rocco)\..*\.(avif|webp|png)$/.test(url)) {
         try {
           const buf = await r.body();
           bytes += buf.length;

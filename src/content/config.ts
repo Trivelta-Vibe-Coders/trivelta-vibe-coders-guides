@@ -15,7 +15,7 @@ const apps = defineCollection({
       live_url: z.string().url().nullable(),
       repo_url: z.string().url(),
       hero_image: image(),
-      secondary_image: image().optional(),
+      portrait: z.boolean().default(false),
       guest_credentials: z
         .object({ email: z.string().email(), password: z.string() })
         .optional(),
