@@ -249,7 +249,7 @@
 }
 .gcard-foot {
   margin-top: auto;
-  padding-top: 14px;
+  padding-top: 16px;
   border-top: 1px solid var(--border);
   display: flex;
   justify-content: space-between;
@@ -257,10 +257,35 @@
   gap: 12px;
   flex-wrap: wrap;
 }
-.gcard-meta {
-  font-size: 12px;
+.gcard-byline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.gcard-byline-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.gcard-byline-label {
+  font-size: 9.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--text-faint);
-  letter-spacing: 0.01em;
+  font-weight: 500;
+}
+.gcard-byline-value {
+  font-size: 12.5px;
+  color: var(--text-dim);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.gcard-byline-dot {
+  color: var(--border-strong);
+  font-size: 14px;
+  line-height: 1;
+  align-self: center;
+  margin-top: 6px;
 }
 .gcard-links {
   display: flex;
