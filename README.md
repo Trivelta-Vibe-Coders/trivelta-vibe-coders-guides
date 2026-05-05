@@ -2,7 +2,7 @@
 
 How to ship fast at Trivelta. Two routes, one outcome:
 
-- **UI walkthrough** — Connor's 5-step onboarding, rendered as a one-page guide. Deployed at `https://vibe-coders-guides.up.railway.app` (live URL once Railway is wired).
+- **UI walkthrough** — Connor's 5-step onboarding, rendered as a one-page guide. Deployed at `https://vibe-coders-guides-production.up.railway.app`.
 - **CLI bootstrap** — `bash scripts/vibe-bootstrap.sh my-app` collapses all 5 steps into one command. See [`scripts/vibe-bootstrap.sh`](scripts/vibe-bootstrap.sh).
 
 ## Run locally
@@ -29,7 +29,7 @@ The third section on the page is a community gallery of apps that were vibe-code
 2. Copy `src/content/apps/rocco.md` to `src/content/apps/<slug>.md` and edit the frontmatter. Schema is enforced at build time, so a bad PR can't merge silently.
 3. Open a PR. Card lands in the grid on merge.
 
-Optional `secondary_image` reveals on hover (cross-fade). For mascots / illustrations, omit it — the card will center the artwork on the dark background.
+For mascots / illustrations, set `portrait: true` in frontmatter — the card will center the artwork on the dark background instead of cropping it to fill 4:3.
 
 ## CLI bootstrap
 
@@ -65,6 +65,17 @@ This repo is itself deployed via the same flow it documents:
 ## Tech
 
 Astro 5 (static output) → `dist/` → served by `server.js` (Express, listens on `process.env.PORT`). Content collections drive the gallery (`src/content/apps/*.md`). Tokens / base / component CSS in `src/styles/`. Playwright e2e in `tests/e2e/`.
+
+## PR screenshots
+
+For visual changes, snap desktop + mobile screenshots and post them as a comment on a PR:
+
+```bash
+npm run dev                                # in one terminal
+node scripts/pr-screenshots.mjs --pr <N>   # in another
+```
+
+Images live on the orphan `pr-screenshots` branch under `pr-<N>/<shortSha>/`. No third-party image host.
 
 ## Contributing
 
