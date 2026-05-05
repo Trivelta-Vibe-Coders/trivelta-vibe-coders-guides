@@ -1,6 +1,24 @@
 const pres = document.querySelectorAll<HTMLPreElement>('pre');
 
 pres.forEach((pre) => {
+  if (pre.dataset.decorated === '1') return;
+  pre.dataset.decorated = '1';
+
+  // Terminal title bar: 3 traffic-light dots + a faint mono path label.
+  // Decorative — no behavior, no a11y noise.
+  const bar = document.createElement('div');
+  bar.className = 'term-bar';
+  bar.setAttribute('aria-hidden', 'true');
+  bar.innerHTML = `
+    <span class="term-dots">
+      <span class="term-dot term-dot--r"></span>
+      <span class="term-dot term-dot--y"></span>
+      <span class="term-dot term-dot--g"></span>
+    </span>
+    <span class="term-path">~/trivelta-vibe-coders</span>
+  `;
+  pre.prepend(bar);
+
   const btn = document.createElement('button');
   btn.className = 'copy-btn';
   btn.type = 'button';

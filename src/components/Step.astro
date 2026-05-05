@@ -9,9 +9,11 @@ const { chip, title, first = false, topRule = false } = Astro.props;
 const cls = ['step', first ? 'step--first' : '', topRule ? 'step--top-rule' : '']
   .filter(Boolean)
   .join(' ');
+const isNumeric = /^\d+$/.test(chip);
+const tag = isNumeric ? `[${chip.padStart(2, '0')}]` : `[${chip}]`;
 ---
 <div class={cls}>
-  <div class="chip">{chip}</div>
+  <span class="step-tag">{tag}</span>
   <div>
     <h4>{title}</h4>
     <slot />

@@ -13,7 +13,10 @@
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 32px;
-  animation: fade 0.7s ease-out;
+  animation: fade 0.7s ease-out 320ms both;
+}
+.routes > .route:nth-of-type(2) {
+  animation-delay: 400ms;
 }
 .route-tag {
   font-size: 11px;
@@ -35,27 +38,41 @@
 
 /* Numbered step rows */
 .step {
+  position: relative;
   display: grid;
-  grid-template-columns: 40px 1fr;
+  grid-template-columns: 56px 1fr;
   gap: 16px;
-  padding: 18px 0;
+  padding: 18px 0 18px 14px;
   border-top: 1px solid var(--border);
+  transition: background 0.2s ease;
+}
+.step::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 18px;
+  bottom: 18px;
+  width: 1px;
+  background: var(--border);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+.step:hover::before {
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
 }
 .step.step--first { border-top: none; padding-top: 4px; }
+.step.step--first::before { top: 4px; }
 .step.step--top-rule { margin-top: 28px; border-top: 1px solid var(--border); padding-top: 22px; }
-.chip {
-  width: 32px;
-  height: 32px;
-  border-radius: 6px;
-  background: var(--accent);
-  color: #fff;
+.step.step--top-rule::before { top: 22px; }
+.step-tag {
   font-family: var(--mono);
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.4), 0 4px 14px rgba(59, 130, 246, 0.18);
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  align-self: start;
+  padding-top: 6px;
+  font-feature-settings: "tnum";
 }
 .step h4 {
   margin: 4px 0 6px;
