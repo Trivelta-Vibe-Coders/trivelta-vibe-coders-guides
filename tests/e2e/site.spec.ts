@@ -74,7 +74,7 @@ test.describe('vibe-coders-guides one-pager', () => {
     let bytes = 0;
     page.on('response', async (r) => {
       const url = r.url();
-      if (/\/_astro\/(report|runs|rocco)\..*\.(avif|webp|png)$/.test(url)) {
+      if (/\/_astro\/(report|tv|rocco|queue)\..*\.(avif|webp|png)$/.test(url)) {
         try {
           const buf = await r.body();
           bytes += buf.length;

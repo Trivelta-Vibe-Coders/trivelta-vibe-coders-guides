@@ -16,7 +16,7 @@ const mediaCls = ['gcard-media', !hasSecondary ? 'gcard-media--portrait' : '']
   .filter(Boolean)
   .join(' ');
 ---
-<article class="gcard" data-slug={d.slug} data-status={d.status}>
+<article class="gcard" data-slug={d.slug}>
   <div class={mediaCls} data-has-secondary={hasSecondary ? 'true' : 'false'}>
     <Picture
       src={d.hero_image}
@@ -50,8 +50,23 @@ const mediaCls = ['gcard-media', !hasSecondary ? 'gcard-media--portrait' : '']
     </ul>
     <p class="gcard-blurb">{d.blurb}</p>
     <footer class="gcard-foot">
-      <span class="gcard-meta">{d.built_by} · {d.shipped} · <span class={`badge badge-${d.status}`}>{d.status}</span></span>
+      <span class="gcard-meta">
+        {d.built_by} · {d.shipped}
+        {d.live && <> · <span class="badge badge-live">live</span></>}
+        {d.internal && <> · <span class="badge badge-internal">internal</span></>}
+      </span>
       <span class="gcard-links">
+        {d.guest_credentials && (
+          <button
+            type="button"
+            class="btn btn-copy-login"
+            data-copy-login
+            data-email={d.guest_credentials.email}
+            data-password={d.guest_credentials.password}
+            aria-label={`Copy guest login (${d.guest_credentials.email})`}
+            title={`Copy guest login (${d.guest_credentials.email})`}
+          >Copy login</button>
+        )}
         {d.live_url && <a class="btn btn-primary" href={d.live_url}>Live</a>}
         <a class="btn" href={d.repo_url}>Repo</a>
       </span>

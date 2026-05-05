@@ -8,13 +8,17 @@ const apps = defineCollection({
       slug: z.string(),
       name: z.string(),
       tagline: z.string().max(120),
-      status: z.enum(['live', 'internal', 'wip']),
+      live: z.boolean().default(false),
+      internal: z.boolean().default(false),
       stack: z.array(z.string()),
       ai_tools: z.array(z.string()),
       live_url: z.string().url().nullable(),
       repo_url: z.string().url(),
       hero_image: image(),
       secondary_image: image().optional(),
+      guest_credentials: z
+        .object({ email: z.string().email(), password: z.string() })
+        .optional(),
       built_by: z.string(),
       shipped: z.string().regex(/^\d{4}-\d{2}$/),
       blurb: z.string(),
