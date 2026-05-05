@@ -9,11 +9,19 @@ interface Props {
 const { entry } = Astro.props;
 const d = entry.data;
 
-// Mascots / illustrations opt into a centered, padded layout via `portrait: true`
-// in their frontmatter. Real screenshots use the default 4:3 cover crop.
 const mediaCls = ['gcard-media', d.portrait ? 'gcard-media--portrait' : '']
   .filter(Boolean)
   .join(' ');
+
+function formatShipped(shipped: string): string {
+  const parts = shipped.split('-').map(Number);
+  const monthNames = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December',
+  ];
+  const month = monthNames[parts[1] - 1];
+  return parts[2] ? `${month} ${parts[2]}, ${parts[0]}` : `${month} ${parts[0]}`;
+}
 ---
 <article class="gcard" data-slug={d.slug}>
   <div class={mediaCls}>
@@ -36,11 +44,17 @@ const mediaCls = ['gcard-media', d.portrait ? 'gcard-media--portrait' : '']
     </ul>
     <p class="gcard-blurb">{d.blurb}</p>
     <footer class="gcard-foot">
-      <span class="gcard-meta">
-        {d.built_by} · {d.shipped}
-        {d.live && <> · <span class="badge badge-live">live</span></>}
-        {d.internal && <> · <span class="badge badge-internal">internal</span></>}
-      </span>
+      <div class="gcard-byline">
+        <span class="gcard-byline-item">
+          <span class="gcard-byline-label">Author</span>
+          <span class="gcard-byline-value">{d.built_by}</span>
+        </span>
+        <span class="gcard-byline-dot" aria-hidden="true">·</span>
+        <span class="gcard-byline-item">
+          <span class="gcard-byline-label">Published</span>
+          <span class="gcard-byline-value">{formatShipped(d.shipped)}</span>
+        </span>
+      </div>
       <span class="gcard-links">
         {d.guest_credentials && (
           <button

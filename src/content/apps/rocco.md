@@ -11,7 +11,7 @@ repo_url: https://github.com/sam-trivelta/pr-review-bot
 hero_image: ../../assets/gallery/rocco/rocco.png
 portrait: true
 built_by: Sam Clark
-shipped: 2026-04
+shipped: "2026-05-04"
 order: 2
 blurb: >-
   Maintains a live Slack queue of PRs waiting for human eyes.

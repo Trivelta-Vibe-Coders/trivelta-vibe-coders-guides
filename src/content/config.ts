@@ -20,7 +20,7 @@ const apps = defineCollection({
         .object({ email: z.string().email(), password: z.string() })
         .optional(),
       built_by: z.string(),
-      shipped: z.string().regex(/^\d{4}-\d{2}$/),
+      shipped: z.string().regex(/^\d{4}-\d{2}(-\d{2})?$/),
       blurb: z.string(),
       order: z.number().optional(),
     }),
