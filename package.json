@@ -1,6 +1,6 @@
 {
   "name": "trivelta-vibe-coders-guides",
-  "version": "0.1.0",
+  "version": "1.0.4",
   "private": true,
   "description": "How to ship fast at Trivelta — UI walkthrough + CLI bootstrap for the Vibe Coders flow.",
   "main": "server.js",
