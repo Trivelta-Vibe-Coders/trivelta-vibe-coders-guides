@@ -11,7 +11,7 @@ repo_url: https://github.com/sam-trivelta/trivelta-ai-reviews
 hero_image: ../../assets/gallery/trivelta-ai-reviews/tv.png
 guest_credentials:
   email: guest@trivelta.com
-  password: qma2PJU-hzq5wgm9knb
+  password: qma2PJU-hzq5wgm9knb # gitguardian:ignore
 built_by: Sam Clark
 shipped: 2026-04
 order: 1
