@@ -9,7 +9,6 @@ ai_tools: [Claude Code]
 live_url: https://dashboard-production-f589.up.railway.app/
 repo_url: https://github.com/sam-trivelta/trivelta-ai-reviews
 hero_image: ../../assets/gallery/trivelta-ai-reviews/tv.png
-secondary_image: ../../assets/gallery/trivelta-ai-reviews/report.png
 guest_credentials:
   email: guest@trivelta.com
   password: qma2PJU-hzq5wgm9knb

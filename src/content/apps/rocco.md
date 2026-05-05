@@ -9,7 +9,7 @@ ai_tools: [Claude Code]
 live_url: https://trivelta.slack.com/archives/C09PTU4H5GA
 repo_url: https://github.com/sam-trivelta/pr-review-bot
 hero_image: ../../assets/gallery/rocco/rocco.png
-secondary_image: ../../assets/gallery/rocco/queue.png
+portrait: true
 built_by: Sam Clark
 shipped: 2026-04
 order: 2

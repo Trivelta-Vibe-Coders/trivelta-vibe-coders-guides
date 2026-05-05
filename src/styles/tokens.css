@@ -11,6 +11,11 @@
   --accent-soft: rgba(59, 130, 246, 0.12);
   --accent-border: rgba(59, 130, 246, 0.35);
   --warn: #f59e0b;
-  --mono: ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", Consolas, monospace;
-  --sans: -apple-system, BlinkMacSystemFont, "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Monaco, "Cascadia Mono", Consolas, monospace;
+  --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --display: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --accent-glow: rgba(59, 130, 246, 0.6);
+  --term-red: #ff5f57;
+  --term-amber: #febc2e;
+  --term-green: #28c840;
 }

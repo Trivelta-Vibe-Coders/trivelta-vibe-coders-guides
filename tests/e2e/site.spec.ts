@@ -40,22 +40,6 @@ test.describe('vibe-coders-guides one-pager', () => {
     expect(errors, errors.join('\n')).toEqual([]);
   });
 
-  test('hover swaps primary/secondary image on the card with two images', async ({ page }) => {
-    await page.goto('/');
-
-    const card = page.locator('.gcard[data-slug="trivelta-ai-reviews"]');
-    const primary = card.locator('.gcard-img-primary');
-    const secondary = card.locator('.gcard-img-secondary');
-
-    await expect(secondary).toHaveCSS('opacity', '0');
-    await expect(primary).toHaveCSS('opacity', '1');
-
-    await card.hover();
-
-    await expect(secondary).toHaveCSS('opacity', '1');
-    await expect(primary).toHaveCSS('opacity', '0');
-  });
-
   test('mobile (375px): gallery collapses to one column', async ({ browser }) => {
     const ctx = await browser.newContext({ viewport: { width: 375, height: 800 } });
     const page = await ctx.newPage();
@@ -74,7 +58,7 @@ test.describe('vibe-coders-guides one-pager', () => {
     let bytes = 0;
     page.on('response', async (r) => {
       const url = r.url();
-      if (/\/_astro\/(report|tv|rocco|queue)\..*\.(avif|webp|png)$/.test(url)) {
+      if (/\/_astro\/(tv|rocco)\..*\.(avif|webp|png)$/.test(url)) {
         try {
           const buf = await r.body();
           bytes += buf.length;
@@ -99,5 +83,61 @@ test.describe('vibe-coders-guides one-pager', () => {
     const res = await request.get('/healthz');
     expect(res.status()).toBe(200);
     expect((await res.text()).trim()).toBe('ok');
+  });
+
+  test('AI Reviews card: copy-login button copies guest creds, never reveals the password', async ({ browser }) => {
+    const ctx = await browser.newContext({ permissions: ['clipboard-read', 'clipboard-write'] });
+    const page = await ctx.newPage();
+    await page.goto('/');
+
+    const card = page.locator('.gcard[data-slug="trivelta-ai-reviews"]');
+    const btn = card.locator('button[data-copy-login]');
+    await expect(btn).toHaveCount(1);
+    await expect(btn).toHaveText('Copy login');
+
+    // Rocco doesn't have guest_credentials → no copy-login button.
+    await expect(
+      page.locator('.gcard[data-slug="rocco"] button[data-copy-login]'),
+    ).toHaveCount(0);
+
+    // The password must never appear as visible text content. The data attribute
+    // is fine (we accepted that trade-off), but the rendered DOM should not
+    // expose it. Match against the actual stored password to keep this honest.
+    const storedPassword = await btn.getAttribute('data-password');
+    expect(storedPassword, 'data-password is the source of truth').toBeTruthy();
+    const visibleText = await page.locator('body').textContent();
+    expect(visibleText ?? '').not.toContain(storedPassword!);
+
+    await btn.click();
+    await expect(btn).toHaveText('Copied');
+
+    const clip = await page.evaluate(() => navigator.clipboard.readText());
+    expect(clip).toBe(`guest@trivelta.com\n${storedPassword}`);
+
+    await ctx.close();
+  });
+
+  test('cards render both live + internal badges from independent flags', async ({ page }) => {
+    await page.goto('/');
+    for (const slug of ['trivelta-ai-reviews', 'rocco']) {
+      const meta = page.locator(`.gcard[data-slug="${slug}"] .gcard-meta`);
+      await expect(meta.locator('.badge-live')).toHaveText('live');
+      await expect(meta.locator('.badge-internal')).toHaveText('internal');
+    }
+  });
+
+  test('single-photo invariant: no secondary image; rocco is portrait, AI reviews is cover', async ({ page }) => {
+    await page.goto('/');
+
+    // The dual-photo implementation was intentionally removed. If it ever
+    // reappears via a stray secondary_image in frontmatter or a renderer
+    // change, this test catches it.
+    await expect(page.locator('.gcard-img-secondary')).toHaveCount(0);
+
+    const rocco = page.locator('.gcard[data-slug="rocco"] .gcard-media');
+    await expect(rocco).toHaveClass(/gcard-media--portrait/);
+
+    const ai = page.locator('.gcard[data-slug="trivelta-ai-reviews"] .gcard-media');
+    await expect(ai).not.toHaveClass(/gcard-media--portrait/);
   });
 });
