@@ -13,7 +13,7 @@ const apps = defineCollection({
       stack: z.array(z.string()),
       ai_tools: z.array(z.string()),
       live_url: z.string().url().nullable(),
-      repo_url: z.string().url(),
+      repo_url: z.string().url().optional(),
       hero_image: image(),
       portrait: z.boolean().default(false),
       guest_credentials: z
