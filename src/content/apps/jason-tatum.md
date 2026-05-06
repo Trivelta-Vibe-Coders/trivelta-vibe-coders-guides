@@ -2,11 +2,11 @@
 slug: jason-tatum
 name: Jason Tatum
 tagline: Slack-driven coding agent — plan, approve, ship a PR.
-live: false
+live: true
 internal: true
 stack: [TypeScript, Fastify, BullMQ, Slack Bolt, Railway]
 ai_tools: [Cursor Cloud Agents]
-live_url: null
+live_url: https://jason-tatum-production.up.railway.app/
 repo_url: https://github.com/Trivelta-Vibe-Coders/jason-tatum
 hero_image: ../../assets/gallery/jason-tatum/hero.jpeg
 portrait: false
