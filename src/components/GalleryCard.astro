@@ -68,7 +68,7 @@ function formatShipped(shipped: string): string {
           >Copy login</button>
         )}
         {d.live_url && <a class="btn btn-primary" href={d.live_url}>Live</a>}
-        <a class="btn" href={d.repo_url}>Repo</a>
+        {d.repo_url && <a class="btn" href={d.repo_url}>Repo</a>}
       </span>
     </footer>
   </div>
