@@ -10,7 +10,7 @@ live_url: https://vibe-coders-guides-production.up.railway.app
 repo_url: https://github.com/Trivelta-Vibe-Coders/trivelta-vibe-coders-guides
 hero_image: ../../assets/gallery/vibe-coders-guides/hero.jpeg
 portrait: false
-built_by: Connor Steeley
+built_by: Sam Clark
 shipped: "2026-05-04"
 order: 3
 blurb: >-
