@@ -27,8 +27,14 @@ test.describe('vibe-coders-guides one-pager', () => {
     );
     expect(order).toEqual(['hero', 'routes', 'gallery', 'trouble', 'cta', 'footer']);
 
-    const cards = page.locator('[data-section="gallery"] .gcard, [data-section="gallery"] .gcard-empty');
-    await expect(cards).toHaveCount(3);
+    const gallery = page.locator('[data-section="gallery"]');
+    await expect(gallery.locator('.gallery-title')).toContainText('9 AI Apps');
+
+    const appCards = gallery.locator('.gcard');
+    await expect(appCards).toHaveCount(9);
+
+    const cards = gallery.locator('.gcard, .gcard-empty');
+    await expect(cards).toHaveCount(10);
 
     for (const slug of ['trivelta-ai-reviews', 'rocco']) {
       const repo = page.locator(`.gcard[data-slug="${slug}"] a[href*="github.com"]`).first();
@@ -117,12 +123,12 @@ test.describe('vibe-coders-guides one-pager', () => {
     await ctx.close();
   });
 
-  test('cards render both live + internal badges from independent flags', async ({ page }) => {
+  test('cards render author and published byline', async ({ page }) => {
     await page.goto('/');
     for (const slug of ['trivelta-ai-reviews', 'rocco']) {
-      const meta = page.locator(`.gcard[data-slug="${slug}"] .gcard-meta`);
-      await expect(meta.locator('.badge-live')).toHaveText('live');
-      await expect(meta.locator('.badge-internal')).toHaveText('internal');
+      const byline = page.locator(`.gcard[data-slug="${slug}"] .gcard-byline`);
+      await expect(byline.locator('.gcard-byline-label')).toHaveText(['Author', 'Published']);
+      await expect(byline.locator('.gcard-byline-value')).toHaveText(['Sam Clark', 'May 4, 2026']);
     }
   });
 
