@@ -145,10 +145,52 @@
 .cta a.cta-btn:hover { text-decoration: none; background: #2563eb; }
 
 /* Gallery section */
+.gallery-header {
+  max-width: 760px;
+  margin-bottom: 30px;
+}
+.gallery-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  padding: 5px 11px;
+  margin: 0 0 14px;
+}
+.gallery-kicker::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 18px var(--accent-glow);
+}
+.gallery-title {
+  font-family: var(--display);
+  font-size: clamp(34px, 5vw, 52px);
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--text);
+  margin: 0 0 14px;
+  font-weight: 700;
+}
+.gallery-title::before {
+  content: none;
+}
+.gallery-title-count {
+  color: var(--accent);
+  text-shadow: 0 0 28px rgba(59, 130, 246, 0.35);
+}
 .gallery-lede {
   color: var(--text-dim);
   font-size: 15px;
-  margin: -12px 0 28px;
+  margin: 0;
   max-width: 620px;
 }
 

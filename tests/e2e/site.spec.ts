@@ -27,8 +27,14 @@ test.describe('vibe-coders-guides one-pager', () => {
     );
     expect(order).toEqual(['hero', 'routes', 'gallery', 'trouble', 'cta', 'footer']);
 
-    const cards = page.locator('[data-section="gallery"] .gcard, [data-section="gallery"] .gcard-empty');
-    await expect(cards).toHaveCount(3);
+    const gallery = page.locator('[data-section="gallery"]');
+    await expect(gallery.locator('.gallery-title')).toContainText('9 AI Apps');
+
+    const appCards = gallery.locator('.gcard');
+    await expect(appCards).toHaveCount(9);
+
+    const cards = gallery.locator('.gcard, .gcard-empty');
+    await expect(cards).toHaveCount(10);
 
     for (const slug of ['trivelta-ai-reviews', 'rocco']) {
       const repo = page.locator(`.gcard[data-slug="${slug}"] a[href*="github.com"]`).first();

@@ -10,10 +10,18 @@ const apps = (await getCollection('apps')).sort((a, b) => {
   if (ao !== bo) return ao - bo;
   return a.data.name.localeCompare(b.data.name);
 });
+
+const appCount = apps.length;
+const appLabel = appCount === 1 ? 'AI App' : 'AI Apps';
 ---
 <section data-section="gallery">
-  <h2>AI-coded apps</h2>
-  <p class="gallery-lede">Built with the same flow this page describes.</p>
+  <header class="gallery-header">
+    <p class="gallery-kicker">Vibe-coded showcase</p>
+    <h2 class="gallery-title">
+      <span class="gallery-title-count">{appCount}</span> {appLabel} built at Trivelta
+    </h2>
+    <p class="gallery-lede">Built with the same flow this page describes.</p>
+  </header>
   <div class="gallery-grid">
     {apps.map((entry) => <GalleryCard entry={entry} />)}
     <EmptyCard />
