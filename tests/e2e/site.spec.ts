@@ -123,12 +123,12 @@ test.describe('vibe-coders-guides one-pager', () => {
     await ctx.close();
   });
 
-  test('cards render both live + internal badges from independent flags', async ({ page }) => {
+  test('cards render author and published byline', async ({ page }) => {
     await page.goto('/');
     for (const slug of ['trivelta-ai-reviews', 'rocco']) {
-      const meta = page.locator(`.gcard[data-slug="${slug}"] .gcard-meta`);
-      await expect(meta.locator('.badge-live')).toHaveText('live');
-      await expect(meta.locator('.badge-internal')).toHaveText('internal');
+      const byline = page.locator(`.gcard[data-slug="${slug}"] .gcard-byline`);
+      await expect(byline.locator('.gcard-byline-label')).toHaveText(['Author', 'Published']);
+      await expect(byline.locator('.gcard-byline-value')).toHaveText(['Sam Clark', 'May 4, 2026']);
     }
   });
 
