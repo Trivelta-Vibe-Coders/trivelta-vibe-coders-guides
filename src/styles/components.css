@@ -118,6 +118,70 @@
   color: var(--text-dim);
   font-size: 14.5px;
 }
+.trouble-support {
+  margin-top: 28px;
+  padding: 18px 20px;
+  border: 1px solid var(--accent-border);
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(59, 130, 246, 0.16), rgba(59, 130, 246, 0.04)),
+    var(--bg-code);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.trouble-support p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 14.5px;
+}
+.trouble-support p + p { margin-top: 3px; }
+.trouble-support strong { color: var(--text); }
+.trouble-support .trouble-support-kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.trouble-slack-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.2;
+  box-shadow: 0 10px 28px rgba(59, 130, 246, 0.16);
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+.trouble-slack-btn:hover,
+.trouble-slack-btn:focus-visible {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px rgba(59, 130, 246, 0.22);
+}
+.trouble-slack-btn:focus-visible {
+  outline: 2px solid var(--accent-border);
+  outline-offset: 3px;
+}
+@media (max-width: 880px) {
+  .trouble-support {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .trouble-slack-btn { width: 100%; }
+}
 
 /* CTA strip */
 .cta {

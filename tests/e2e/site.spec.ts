@@ -41,6 +41,11 @@ test.describe('vibe-coders-guides one-pager', () => {
       await expect(repo).toHaveAttribute('href', /github\.com\/sam-trivelta\//);
     }
 
+    const slackLink = page.locator(
+      '[data-section="trouble"] a[href="https://trivelta.slack.com/archives/C0AH0GPSV24"]',
+    );
+    await expect(slackLink).toHaveText(/Open #engineering-with-ai in Slack/);
+
     const cls = await page.evaluate(() => (window as unknown as { __cls: number }).__cls);
     expect(cls).toBeLessThan(0.1);
     expect(errors, errors.join('\n')).toEqual([]);
