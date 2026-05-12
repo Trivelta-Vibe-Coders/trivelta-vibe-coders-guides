@@ -30,8 +30,9 @@ When adding or updating a gallery app:
 1. Add screenshots or artwork under `src/assets/gallery/<slug>/`.
 2. Add or update `src/content/apps/<slug>.md`.
 3. Match the schema in `src/content/config.ts`, including `slug`, `name`, `tagline`, `live`, `internal`, `stack`, `ai_tools`, `live_url`, `hero_image`, `built_by`, `shipped`, and `blurb`.
-4. Use `portrait: true` for mascot or portrait-style artwork that should be centered instead of cropped.
-5. Keep `tagline` at 120 characters or fewer.
+4. Use optional frontmatter when relevant: `repo_url` adds a Repo button, `guest_credentials` adds a Copy login button, and `order` controls card sorting.
+5. Use `portrait: true` for mascot or portrait-style artwork that should be centered instead of cropped.
+6. Keep `tagline` at 120 characters or fewer.
 
 ## Style Guidance
 
