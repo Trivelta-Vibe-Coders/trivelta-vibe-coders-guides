@@ -118,6 +118,59 @@
   color: var(--text-dim);
   font-size: 14.5px;
 }
+.trouble-help {
+  margin-top: 28px;
+  padding: 20px;
+  border: 1px solid var(--accent-border);
+  border-radius: 12px;
+  background: var(--accent-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+.trouble-help p {
+  margin: 0;
+  color: var(--text-dim);
+  font-size: 14.5px;
+}
+.trouble-help strong { color: var(--text); font-weight: 600; }
+.trouble-help .trouble-help-kicker {
+  margin-bottom: 4px;
+  color: var(--text);
+  font-weight: 600;
+}
+.trouble-slack-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex: 0 0 auto;
+  padding: 10px 16px;
+  border: 1px solid var(--accent-border);
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 12px 28px rgba(59, 130, 246, 0.18);
+}
+.trouble-slack-btn::before {
+  content: "#";
+  font-family: var(--mono);
+  opacity: 0.8;
+}
+.trouble-slack-btn:hover {
+  background: #2563eb;
+  color: #fff;
+  text-decoration: none;
+}
+@media (max-width: 640px) {
+  .trouble-help {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .trouble-slack-btn { justify-content: center; }
+}
 
 /* CTA strip */
 .cta {

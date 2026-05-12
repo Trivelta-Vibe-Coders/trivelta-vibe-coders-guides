@@ -27,6 +27,11 @@ test.describe('vibe-coders-guides one-pager', () => {
     );
     expect(order).toEqual(['hero', 'routes', 'gallery', 'trouble', 'cta', 'footer']);
 
+    const trouble = page.locator('[data-section="trouble"]');
+    const slack = trouble.getByRole('link', { name: 'Open Slack channel' });
+    await expect(slack).toHaveAttribute('href', 'https://trivelta.slack.com/archives/C0AH0GPSV24');
+    await expect(slack).toHaveAttribute('target', '_blank');
+
     const gallery = page.locator('[data-section="gallery"]');
     await expect(gallery.locator('.gallery-title')).toContainText('9 AI Apps');
 
