@@ -28,13 +28,13 @@ test.describe('vibe-coders-guides one-pager', () => {
     expect(order).toEqual(['hero', 'routes', 'gallery', 'trouble', 'cta', 'footer']);
 
     const gallery = page.locator('[data-section="gallery"]');
-    await expect(gallery.locator('.gallery-title')).toContainText('9 AI Apps');
+    await expect(gallery.locator('.gallery-title')).toContainText('10 AI Apps');
 
     const appCards = gallery.locator('.gcard');
-    await expect(appCards).toHaveCount(9);
+    await expect(appCards).toHaveCount(10);
 
     const cards = gallery.locator('.gcard, .gcard-empty');
-    await expect(cards).toHaveCount(10);
+    await expect(cards).toHaveCount(11);
 
     for (const slug of ['trivelta-ai-reviews', 'rocco']) {
       const repo = page.locator(`.gcard[data-slug="${slug}"] a[href*="github.com"]`).first();

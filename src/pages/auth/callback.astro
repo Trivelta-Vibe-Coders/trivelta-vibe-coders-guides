@@ -1,0 +1,25 @@
+---
+import Site from '../../layouts/Site.astro';
+---
+
+<Site
+  title="Signing in · Vibe Coders"
+  description="Completing Supabase magic-link sign-in."
+>
+  <div class="wrap auth-wrap">
+    <main class="auth-main">
+      <section class="auth-card auth-card--compact">
+        <h1 class="auth-title">Completing sign-in…</h1>
+        <p class="auth-lead" data-callback-status>
+          Checking your Supabase session.
+        </p>
+        <p class="auth-error" data-callback-error hidden role="alert"></p>
+        <a class="btn auth-back" href="/login" data-callback-back hidden>Back to sign in</a>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    import '../../scripts/auth-callback';
+  </script>
+</Site>

@@ -514,3 +514,116 @@
 }
 .contribute ol li { margin: 6px 0; }
 .contribute ol li code { color: var(--text); }
+
+/* Auth */
+.nav-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.nav-auth {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.btn-sign-out {
+  font-family: var(--sans);
+  background: transparent;
+  cursor: pointer;
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.auth-wrap {
+  min-height: 100vh;
+}
+.auth-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 180px);
+}
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--bg-elev);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 36px;
+  animation: fade 0.6s ease-out both;
+}
+.auth-card--compact {
+  text-align: center;
+}
+.auth-eyebrow {
+  margin: 0 0 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.auth-title {
+  margin: 0 0 12px;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+}
+.auth-lead {
+  margin: 0 0 28px;
+  color: var(--text-dim);
+  font-size: 15px;
+  line-height: 1.55;
+}
+.auth-form {
+  display: grid;
+  gap: 12px;
+}
+.auth-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.auth-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg-code);
+  color: var(--text);
+  font: inherit;
+}
+.auth-input:focus {
+  outline: none;
+  border-color: var(--accent-border);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.auth-submit {
+  margin-top: 8px;
+  width: 100%;
+  height: 44px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.auth-error {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  background: rgba(239, 68, 68, 0.08);
+  color: #fecaca;
+  font-size: 14px;
+}
+.auth-status {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-soft);
+  color: var(--text);
+  font-size: 14px;
+}
+.auth-back {
+  margin-top: 20px;
+}

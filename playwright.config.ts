@@ -20,6 +20,9 @@ export default defineConfig({
     url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
     timeout: 120_000,
-    env: { PORT: String(PORT) },
+    env: {
+      PORT: String(PORT),
+      PUBLIC_AUTH_DISABLED: 'true',
+    },
   },
 });
