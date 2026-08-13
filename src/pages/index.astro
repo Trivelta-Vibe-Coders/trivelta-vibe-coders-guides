@@ -14,11 +14,7 @@ import Footer from '../components/Footer.astro';
   <div class="wrap">
     <div class="nav">
       <span class="brand"><span class="brand-dot"></span>Trivelta Vibe Coders</span>
-      <span class="nav-meta" data-nav-guest>Internal · v1.0.4</span>
-      <span class="nav-meta nav-auth" data-nav-auth hidden>
-        <span data-nav-email></span>
-        <button class="btn btn-sign-out" type="button" data-sign-out>Sign out</button>
-      </span>
+      <span class="nav-meta">Internal · v1.0.4</span>
     </div>
 
     <main>
@@ -31,8 +27,4 @@ import Footer from '../components/Footer.astro';
 
     <Footer />
   </div>
-
-  <script>
-    import '../scripts/auth-gate';
-  </script>
 </Site>

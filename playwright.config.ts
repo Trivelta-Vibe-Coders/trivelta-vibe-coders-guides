@@ -22,7 +22,6 @@ export default defineConfig({
     timeout: 120_000,
     env: {
       PORT: String(PORT),
-      PUBLIC_AUTH_DISABLED: 'true',
     },
   },
 });

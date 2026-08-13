@@ -4,6 +4,14 @@ All notable changes to Trivelta Vibe Coders Guides are documented here.
 
 ---
 
+## [Unreleased]
+
+### Removed
+- Supabase magic-link auth wall. The guide is now open to anyone with the link — no `/login`, no `/auth/callback`, no `@trivelta.com` gate
+- `@supabase/supabase-js` dependency, `PUBLIC_SUPABASE_*` / `PUBLIC_AUTH_DISABLED` env vars, and `scripts/railway-set-auth-env.sh`
+
+---
+
 ## [v1.0.4] — 2026-05-05
 
 ### Changed
