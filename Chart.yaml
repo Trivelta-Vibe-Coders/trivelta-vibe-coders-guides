@@ -1,0 +1,6 @@
+apiVersion: v2
+name: zc-bootstrap-probe
+description: Minimal bootstrap chart used to validate the GitOps chart pipeline.
+type: application
+version: 0.1.0
+appVersion: "1.0.0"
